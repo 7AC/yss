@@ -48,8 +48,7 @@ def main():
 	if characters == None:
 		help()
 		sys.exit()
-        atotal = ysslib.get_symbols(length=int(characters), verbose=verbose,
-                                    get_names=True)
+        atotal = ysslib.get_symbols(length=int(characters), verbose=verbose)
 	csv = 'yahoo_stock_symbols_%s.csv' % characters
 	txt = 'yahoo_stock_symbols_%s.txt' % characters
 	fcsv = open(csv, 'w')
