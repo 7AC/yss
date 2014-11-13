@@ -24,5 +24,7 @@ def fetch_symbols(candidates, request_size=200, verbose=False):
 def get_symbols(length=8, verbose=False):
    candidates = []
    for n in range(1, length + 1):
+      if verbose:
+         print 'Computing candidates of length', n
       candidates += [''.join(c) for c in product(string.ascii_uppercase, repeat=n)]
    return fetch_symbols(candidates, verbose=verbose)
