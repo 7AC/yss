@@ -21,10 +21,15 @@ def fetch_symbols(candidates, request_size=200, verbose=False):
             symbols.append(line)
    return symbols
 
-def get_symbols(length=8, verbose=False):
+def get_candidate_symbols(length=8, verbose=False):
    candidates = []
    for n in range(1, length + 1):
       if verbose:
          print 'Computing candidates of length', n
       candidates += [''.join(c) for c in product(string.ascii_uppercase, repeat=n)]
+   return candidates
+
+def get_symbols(candidates=None, length=8, verbose=False):
+   if not candidates:
+      candidates = get_candidate_symbols( length=length, verbose=verbose )
    return fetch_symbols(candidates, verbose=verbose)
