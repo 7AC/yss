@@ -54,12 +54,8 @@ def _get_symbols(a1, verbose):
       sys.stdout.flush()
    return symbols
 
-uppercase_a = ord('A')
-ascii_uppercase_len = len(string.ascii_uppercase)
 def get_symbols(length=5, verbose=False, get_names=False):
    a1 = []
    for n in range(1, length + 1):
-      for chars in product(range(uppercase_a, uppercase_a + ascii_uppercase_len),
-                           repeat=n):
-         a1.append( ''.join(chr(c) for c in chars))
+      a1 += [''.join(c) for c in product(string.ascii_uppercase, repeat=n)]
    return _get_symbols(a1, verbose)
