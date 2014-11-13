@@ -21,7 +21,7 @@ def fetch_symbols(candidates, request_size=200, verbose=False):
             symbols.append(line)
    return symbols
 
-def get_symbols(length=5, verbose=False):
+def get_symbols(length=8, verbose=False):
    candidates = []
    for n in range(1, length + 1):
       candidates += [''.join(c) for c in product(string.ascii_uppercase, repeat=n)]
