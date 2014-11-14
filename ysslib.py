@@ -2,11 +2,14 @@ import string, urllib2
 from itertools import product
 
 def fetch_symbols(candidates, request_size=200, verbose=False):
-   groups = [candidates[x:x+request_size] for x in xrange(0, len(candidates),
-                                                          request_size)]
+   candidates_len = len(candidates)
    symbols = []
    properties = 'sn'
-   for group in groups:
+   requests = xrange(0, candidates_len, request_size)
+   requests_len = len(requests)
+   i = 1
+   for r in requests:
+      group = candidates[ r : r + request_size ]
       url = 'http://finance.yahoo.com/d/quotes.csv?s=%s&f=%s' % ( '+'.join(group),
                                                                   properties )
       if verbose:
@@ -19,6 +22,10 @@ def fetch_symbols(candidates, request_size=200, verbose=False):
             if verbose:
                print line
             symbols.append(line)
+      if verbose:
+         print 'Done (%d/%d, %f%%)' % ( i, requests_len,
+               float( i ) / float( requests_len ) * float( 100 ) )
+      i += 1
    return symbols
 
 def get_candidate_symbols(length=8, verbose=False):
